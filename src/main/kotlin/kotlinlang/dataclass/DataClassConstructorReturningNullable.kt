@@ -1,7 +1,7 @@
 package kotlinlang.dataclass
 
 @Suppress("DataClassPrivateConstructor")
-data class ValidatedDataClass private constructor(val string: String) {
+data class DataClassConstructorReturningNullable private constructor(val string: String) {
     init {
         if (!validate(string)) throw IllegalArgumentException()
     }
@@ -11,9 +11,9 @@ data class ValidatedDataClass private constructor(val string: String) {
             return string.isNotEmpty()
         }
 
-        operator fun invoke(string: String): ValidatedDataClass? {
+        operator fun invoke(string: String): DataClassConstructorReturningNullable? {
             return if (validate(string))
-                ValidatedDataClass(string)
+                DataClassConstructorReturningNullable(string)
             else
                 null
         }
