@@ -20,7 +20,7 @@ Turns out [Kotlin Data classes](https://kotlinlang.org/docs/data-classes.html) m
 
 For example a nullable instance, being null if invalid.
 
-This is explored in [DataClassConstructorReturningNullable](/src/main/kotlin/kotlinlang/dataclass/DataClassConstructorReturningNullable).
+This is explored in [DataClassConstructorReturningNullable](/src/main/kotlin/kotlinlang/dataclass/DataClassConstructorReturningNullable.kt).
 
 Pros:
 - no more exception :)
@@ -44,15 +44,15 @@ Shall i use a dumb String for it? Well, how to make sure it's correct?
 
 So we go for a type, dedicated for this need, handling validation.
 
-Based on our experiment on [Data class](/src/main/kotlin/kotlinglang/dataclass), we know how to have a constructor returns a wrapper type.
+Based on our experiment on [Data class](/src/main/kotlin/kotlinlang/dataclass), we know how to have a constructor returns a wrapper type.
 
-This is done in [BasicDomainName](/src/main/kotlin/feature/domaintypes/basic/BasicDomainName).
+This is done in [BasicDomainName](/src/main/kotlin/feature/domaintypes/basic/BasicDomainName.kt).
 
 Then, well, having a concept in the domain being a string of at least some length up to some other length is pretty common.
 
 How can we factor this out so that we can create plenty of such types easily?
 
-Well, looks like we are aiming for some kind of "archetype" named [StringRange](/src/main/kotlin/feature/domaintypes/archetypes/), and play with it! 
+Well, looks like we are aiming for some kind of "archetype" named [StringRange](/src/main/kotlin/feature/domaintypes/archetypes), and play with it! 
 
 Open question: can the operator fun invoke in DomainName be moved to StringRange?
 
