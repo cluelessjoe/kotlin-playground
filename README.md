@@ -37,7 +37,7 @@ Cons:
 
 ### Domain Types
 
-#### Naive attempt
+#### Basic attempt
 
 What's that?
 
@@ -60,6 +60,15 @@ Then, well, having a concept in the domain being a string of at least some lengt
 How can we factor this out so that we can create plenty of such types easily?
 
 Well, looks like we are aiming for some kind of "archetype" named [StringRange](/src/main/kotlin/feature/domaintypes/archetypes), and play with it!
+
+Note the interface/super class tricky logic on value validation:
+
+- making value an open val in StringRange, the super class, doesn't work: the init method in the super class looks at the value of the subclass, which isn't initialized at this point in time, resulting in a NullPointerException.
+- making value a property in StringRange's body results in the same.
+
+As such i had to resort to an interface, Valuable, to make sure my Domain Type, DomainName here, would have its parameter named value. Then i've to pass the value to the super class for its validation, without making it a val there.
+
+Works but not as straightforward as an open val in the super class!
 
 #### To consider
 

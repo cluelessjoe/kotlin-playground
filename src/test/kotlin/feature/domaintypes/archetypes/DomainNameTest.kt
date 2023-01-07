@@ -1,8 +1,6 @@
 package feature.domaintypes.archetypes
 
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class DomainNameTest {
@@ -16,17 +14,19 @@ class DomainNameTest {
 
     @Test
     fun domainNameConstructedWhenProvidingNonEmptyString() {
-        val constructed: DomainName? = DomainName("dd")
+        val value = "dd"
+        val constructed: DomainName? = DomainName(value)
 
         assertNotNull(constructed)
+        assertEquals(value, constructed!!.value)
     }
 
     @Test
     fun domainNameNullWhenProviding101Characters() {
         val value = "a".repeat(101)
-        val DomainName: DomainName? = DomainName(value)
+        val domainName: DomainName? = DomainName(value)
 
-        assertNull(DomainName)
+        assertNull(domainName)
     }
 
     @Test
@@ -36,7 +36,7 @@ class DomainNameTest {
 
         val toString = created.toString()
 
-        Assertions.assertTrue(toString.contains(value))
-        Assertions.assertTrue(toString.contains(DomainName::class.java.simpleName))
+        assertTrue(toString.contains(value))
+        assertTrue(toString.contains(DomainName::class.java.simpleName))
     }
 }

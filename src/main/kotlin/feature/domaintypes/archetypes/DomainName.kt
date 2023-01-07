@@ -2,7 +2,7 @@ package feature.domaintypes.archetypes
 
 
 @Suppress("DataClassPrivateConstructor")
-data class DomainName private constructor(val value: String) :
+data class DomainName private constructor(override val value: String) :
     StringRange(value, DOMAIN_NAME_MIN_LENGTH, DOMAIN_NAME_MAX_LENGTH) {
 
     companion object {
