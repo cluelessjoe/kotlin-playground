@@ -2,12 +2,12 @@ package feature.domaintypes.archetypes
 
 abstract class StringRange(
     value: String,
-    minLength: Int,
-    maxLength: Int
+    minLengthIncluded: Int,
+    maxLengthIncluded: Int
 ) : Valuable<String> {
 
     init {
-        if (!validate(value, minLength, maxLength)) throw IllegalArgumentException()
+        if (!validate(value, minLengthIncluded, maxLengthIncluded)) throw IllegalArgumentException()
     }
 
 
