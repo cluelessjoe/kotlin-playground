@@ -1,6 +1,5 @@
 package feature.domaintypes.basic
 
-import kotlinlang.dataclass.DataClassConstructorReturningNullable
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -23,8 +22,8 @@ class BasicDomainNameTest {
     @Test
     fun domainNameNullWhenProviding101Characters() {
         val value = "a".repeat(101)
-        val created: DataClassConstructorReturningNullable? =
-            DataClassConstructorReturningNullable(value)
+        val created: BasicDomainName? =
+            BasicDomainName(value)
 
         assertNull(created)
     }

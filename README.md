@@ -3,10 +3,11 @@
 This repo is done to test features of the Kotlin language and some spooky ideas in it.
 
 As such there is:
+
 - the kotlinlang package, whose sub packages test Kotlin,
 - the feature package, which test spooky ideas.
 
-And for sure each exploration has associated unit tests :) 
+And for sure each exploration has associated unit tests :)
 
 ## Kotlin lang
 
@@ -23,10 +24,12 @@ For example a nullable instance, being null if invalid.
 This is explored in [DataClassConstructorReturningNullable](/src/main/kotlin/kotlinlang/dataclass/DataClassConstructorReturningNullable.kt).
 
 Pros:
+
 - no more exception :)
 - [copying](https://kotlinlang.org/docs/data-classes.html#copying) is still working (but throws...)
 
 Cons:
+
 - damned so much boilerplate :'(
   - however Domain Types, presented below and generalizing on the feature, help here: read further :)  
 
@@ -34,7 +37,9 @@ Cons:
 
 ### Domain Types
 
-What's that? 
+#### Naive attempt
+
+What's that?
 
 Well, [Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design) aims for precise description of the business domain in the code.
 
@@ -48,11 +53,15 @@ Based on our experiment on [Data class](/src/main/kotlin/kotlinlang/dataclass), 
 
 This is done in [BasicDomainName](/src/main/kotlin/feature/domaintypes/basic/BasicDomainName.kt).
 
+#### Production ready attempt
+
 Then, well, having a concept in the domain being a string of at least some length up to some other length is pretty common.
 
 How can we factor this out so that we can create plenty of such types easily?
 
-Well, looks like we are aiming for some kind of "archetype" named [StringRange](/src/main/kotlin/feature/domaintypes/archetypes), and play with it! 
+Well, looks like we are aiming for some kind of "archetype" named [StringRange](/src/main/kotlin/feature/domaintypes/archetypes), and play with it!
+
+#### To consider
 
 Open question: can the operator fun invoke in DomainName be moved to StringRange?
 
