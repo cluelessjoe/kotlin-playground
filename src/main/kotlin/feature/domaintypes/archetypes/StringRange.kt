@@ -7,14 +7,13 @@ abstract class StringRange(
 ) : Valuable<String> {
 
     init {
-        if (!validate(value, minLengthIncluded, maxLengthIncluded)) throw IllegalArgumentException()
+        if (!validate(value, minLengthIncluded, maxLengthIncluded)) throw IllegalArgumentException("Value '$value' is invalid")
     }
-
 
     companion object {
 
-        fun validate(value: String, minLength: Int, maxLength: Int): Boolean {
-            return value.length in minLength..maxLength
+        fun validate(value: String, minLengthIncluded: Int, maxLengthIncluded: Int): Boolean {
+            return value.length in minLengthIncluded..maxLengthIncluded
         }
     }
 }

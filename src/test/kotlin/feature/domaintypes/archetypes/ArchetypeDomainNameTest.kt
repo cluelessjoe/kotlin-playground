@@ -1,36 +1,39 @@
-package feature.domaintypes.basic
+package feature.domaintypes.archetypes
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class BasicDomainNameTest {
+class ArchetypeDomainNameTest {
 
     @Test
     fun domainNameNullWhenProvidingEmptyString() {
-        val created: BasicDomainName? = BasicDomainName("")
+        val constructed: ArchetypeDomainName? = ArchetypeDomainName("")
 
-        assertNull(created)
+        assertNull(constructed)
     }
 
     @Test
     fun domainNameConstructedWhenProvidingNonEmptyString() {
-        val created: BasicDomainName? = BasicDomainName("dd")
+        val value = "dd"
 
-        assertNotNull(created)
+        val constructed: ArchetypeDomainName? = ArchetypeDomainName(value)
+
+        assertNotNull(constructed)
+        assertEquals(value, constructed!!.value)
     }
 
     @Test
     fun domainNameNullWhenProviding101Characters() {
         val value = "a".repeat(101)
 
-        val created: BasicDomainName? = BasicDomainName(value)
+        val domainName: ArchetypeDomainName? = ArchetypeDomainName(value)
 
-        assertNull(created)
+        assertNull(domainName)
     }
 
     @Test
     fun copyThrowsOnInvalidContent() {
-        val created = BasicDomainName("de")!!
+        val created = ArchetypeDomainName("de")!!
         var exception: Exception? = null
 
         try {
@@ -44,14 +47,15 @@ class BasicDomainNameTest {
         assertEquals("Value '' is invalid", exception!!.message)
     }
 
+
     @Test
     fun toStringOutputsTheValueAndClassName() {
         val value = "valid"
-        val created: BasicDomainName? = BasicDomainName(value)
+        val created: ArchetypeDomainName? = ArchetypeDomainName(value)
 
         val toString = created.toString()
 
         assertTrue(toString.contains(value))
-        assertTrue(toString.contains(BasicDomainName::class.java.simpleName))
+        assertTrue(toString.contains(ArchetypeDomainName::class.java.simpleName))
     }
 }

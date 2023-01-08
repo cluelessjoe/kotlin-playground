@@ -4,7 +4,7 @@ package feature.domaintypes.basic
 @Suppress("DataClassPrivateConstructor")
 data class BasicDomainName private constructor(val value: String) {
     init {
-        if (!validate(value)) throw IllegalArgumentException()
+        if (!validate(value)) throw IllegalArgumentException("Value '$value' is invalid")
     }
 
     companion object {

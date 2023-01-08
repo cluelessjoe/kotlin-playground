@@ -70,8 +70,19 @@ As such i had to resort to an interface, Valuable, to make sure my Domain Type, 
 
 Works but not as straightforward as an open val in the super class!
 
+#### Arrow production ready attempt!
+
+Returning a nullable value is nice, and better than throwing, but it's lacking in explaining why it failed.
+
+A nice way to resolve this is to use [Kotlin Arrow](https://arrow-kt.io/docs/core/)'s [Validated](https://arrow-kt.io/docs/apidocs/arrow-core/arrow.core/-validated/) to allow [accumulating errors](https://arrow-kt.io/docs/patterns/error_handling/). 
+
+What's accumulating errors? Simply that, when validating some input, often you don't want to fail the validation of the first error, but rather to collect them all.
+
+This avoids loops of input/error/changing and allows exhaustive error messages :).
+
+This is done in the [validated](/src/main/kotlin/feature/domaintypes/validated) package.
+
 #### To consider
 
-Open question: can the operator fun invoke in DomainName be moved to StringRange?
-
-TODO: look for some Validation class in Kotlin, most likely arrow, to have some proper error handling :)
+Open question: can the operator fun invoke in DomainName be somehow not repeated for each Domain Type?
+Todo: improve the above example with a User(firstName, lastName, login, email) so that added value of Validated is more visible :)

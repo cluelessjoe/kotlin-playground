@@ -1,4 +1,7 @@
-package feature.domaintypes.archetypes
+package feature.domaintypes.validated
+
+import arrow.core.Nel
+import arrow.core.Validated
 
 
 @Suppress("DataClassPrivateConstructor")
@@ -9,11 +12,8 @@ data class DomainName private constructor(override val value: String) :
         private const val DOMAIN_NAME_MIN_LENGTH = 1
         private const val DOMAIN_NAME_MAX_LENGTH = 100
 
-        operator fun invoke(string: String): DomainName? {
-            return if (validate(string, DOMAIN_NAME_MIN_LENGTH, DOMAIN_NAME_MAX_LENGTH))
-                DomainName(string)
-            else
-                null
-        }
+        operator fun invoke(string: String): Validated<Nel<StringRangeValidationError>, DomainName> =
+            validate(string, DOMAIN_NAME_MIN_LENGTH, DOMAIN_NAME_MAX_LENGTH) { s -> DomainName(s) }
+
     }
 }
